@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,6 +75,58 @@ namespace moduleFive
 
             return result;
         }
+        static int[] SortArrayAsc(int[] result)
+        {
+            int item = 0;
+
+            for (int j = 0; j < result.Length; j++)
+            {
+                for (int k = j + 1; k < result.Length; k++)
+                {
+                    if (result[j] > result[k])
+                    {
+                        item = result[k];
+                        result[k] = result[j];
+                        result[j] = item;
+                    }
+                }
+            }
+
+            return result;
+        }
+        static int[] SortArrayDesc(int[] result)
+        {
+            int item = 0;
+
+            for (int j = 0; j < result.Length; j++)
+            {
+                for (int k = j + 1; k < result.Length; k++)
+                {
+                    if (result[j] < result[k])
+                    {
+                        item = result[k];
+                        result[k] = result[j];
+                        result[j] = item;
+                    }
+                }
+            }
+
+            return result;
+        }
+        static void SortArray(in int[] array,out int[] sortedDesc,out int[] sortedAsc)
+        {
+            int[] arrayClone = (int[])array.Clone();
+            sortedDesc = SortArrayDesc(array);
+            sortedAsc = SortArrayAsc(arrayClone);
+            foreach (int item in sortedDesc)
+            {
+                Console.WriteLine(item);
+            }
+            foreach (int item in sortedAsc)
+            {
+                Console.WriteLine(item);
+            }
+        }
         static int[] ShowArray(int[] array, bool isSort = false)
         {
             var temp = array;
@@ -106,6 +159,13 @@ namespace moduleFive
                 }
             }
         }
+        static void GetName(ref string name)
+        {
+            Console.WriteLine("Введите имя");
+            name = Console.ReadLine();
+
+        }
+
         static void Main(string[] args)
         {
             //Метод вывода цвета в консоль
@@ -134,11 +194,22 @@ namespace moduleFive
                 Console.Write(favcolor[i]+" ");
             }*/
 
-            int[,] arr = {{ - 5,6,9,1, 2,3 }, { - 8, 8, 1, 1,2,-3}};
-
-            var array = GetArrayFromConsole(10);
-            var sortedarray = ShowArray(array,true);
+            //int[,] arr = {{ - 5,6,9,1, 2,3 }, { - 8, 8, 1, 1,2,-3}};
             //SortComplexArray(arr);
+
+
+            //Задание на сортировку при использовнии необязательного параметра
+            int[] arr1 = new Int32[10];
+            int[] arr2 = new Int32[10];
+            var array = GetArrayFromConsole(10);
+            SortArray(in array, out arr1, out arr2);
+
+            /*string someName = "Ринат";
+            Console.WriteLine(someName);
+
+            GetName(ref someName);
+            Console.WriteLine(someName);*/
+
 
             Console.ReadKey();
         }
