@@ -55,7 +55,6 @@ namespace moduleFive
             }
                 return result;
         }
-
         static int[] SortResult(int[] result)
         {
             int item=0;
@@ -165,7 +164,20 @@ namespace moduleFive
             name = Console.ReadLine();
 
         }
+        static void Echo(string saidword, int deep)
+        {
+            var modif = saidword;
 
+            if (modif.Length > 2)
+            {
+                modif = modif.Remove(0, 2);
+            }
+            Console.WriteLine("..." + modif);
+            if (deep > 1)
+            {
+                Echo(modif, deep - 1);
+            }
+        }
         static void Main(string[] args)
         {
             //Метод вывода цвета в консоль
@@ -199,10 +211,10 @@ namespace moduleFive
 
 
             //Задание на сортировку при использовнии необязательного параметра
-            int[] arr1 = new Int32[10];
+            /*int[] arr1 = new Int32[10];
             int[] arr2 = new Int32[10];
             var array = GetArrayFromConsole(10);
-            SortArray(in array, out arr1, out arr2);
+            SortArray(in array, out arr1, out arr2);*/
 
             /*string someName = "Ринат";
             Console.WriteLine(someName);
@@ -210,6 +222,15 @@ namespace moduleFive
             GetName(ref someName);
             Console.WriteLine(someName);*/
 
+            //Задание на рекурсию
+
+            Console.WriteLine("Напишите что-то");
+            var str = Console.ReadLine();
+
+            Console.WriteLine("Укажите глубину эха");
+            var deep = int.Parse(Console.ReadLine());
+
+            Echo(str, deep);
 
             Console.ReadKey();
         }
